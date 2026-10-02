@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simulador de Urna Eletrônica</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main class="urna">
+
+    <!-- ===================== TELA ===================== -->
+    <section class="tela" id="tela" aria-live="polite">
+
+      <!-- Tela de votação -->
+      <div class="votacao" id="telaVotacao">
+        <div class="tela-topo">
+          <span class="seu-voto" id="seuVoto">SEU VOTO PARA</span>
+        </div>
+
+        <div class="tela-corpo">
+          <div class="dados">
+            <div class="cargo" id="cargo">Presidente</div>
+
+            <div class="linha" id="linhaNumero">
+              <span class="rotulo">Número:</span>
+              <div class="caixas">
+                <div class="caixa" id="d0"></div>
+                <div class="caixa" id="d1"></div>
+              </div>
+            </div>
+
+            <div class="info" id="info">
+              <div class="linha-info"><span class="rotulo">Nome:</span> <span id="nome"></span></div>
+              <div class="linha-info"><span class="rotulo">Partido:</span> <span id="partido"></span></div>
+              <div class="linha-info vice-linha"><span class="rotulo">Vice-Presidente:</span> <span id="viceNome"></span></div>
+            </div>
+
+            <div class="aviso" id="aviso"></div>
+          </div>
+
+          <div class="fotos" id="fotos">
+            <figure class="foto principal">
+              <img id="fotoCand" src="images/lula.png" alt="Foto do candidato">
+              <figcaption>Presidente</figcaption>
+            </figure>
+            <figure class="foto vice">
+              <img id="fotoVice" src="images/alckmin.png" alt="Foto do vice">
+              <figcaption>Vice-Presidente</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="tela-rodape" id="rodape">
+          <hr>
+          <p>Aperte a tecla:</p>
+          <p><strong>VERDE</strong> para <strong>CONFIRMAR</strong> este voto</p>
+          <p><strong>LARANJA</strong> para <strong>CORRIGIR</strong> este voto</p>
+        </div>
+      </div>
+
+      <!-- Tela de FIM -->
+      <div class="fim" id="telaFim">
+        <div class="fim-texto">FIM</div>
+        <div class="fim-sub">VOTOU</div>
+      </div>
+
+    </section>
+
+    <!-- ===================== TECLADO ===================== -->
+    <section class="teclado" aria-label="Teclado da urna">
+      <div class="marca">
+        <span>JUSTIÇA</span>
+        <strong>ELEITORAL</strong>
+      </div>
+
+      <div class="teclas">
+        <button class="tecla num" data-n="1">1</button>
+        <button class="tecla num" data-n="2">2</button>
+        <button class="tecla num" data-n="3">3</button>
+        <button class="tecla num" data-n="4">4</button>
+        <button class="tecla num" data-n="5">5</button>
+        <button class="tecla num" data-n="6">6</button>
+        <button class="tecla num" data-n="7">7</button>
+        <button class="tecla num" data-n="8">8</button>
+        <button class="tecla num" data-n="9">9</button>
+        <span></span>
+        <button class="tecla num" data-n="0">0</button>
+        <span></span>
+      </div>
+
+      <div class="acoes">
+        <button class="tecla branco" id="btnBranco">BRANCO</button>
+        <button class="tecla corrige" id="btnCorrige">CORRIGE</button>
+        <button class="tecla confirma" id="btnConfirma">CONFIRMA</button>
+      </div>
+
+      <div class="contador">Votos nesta sessão: <strong id="contador">0</strong></div>
+    </section>
+
+  </main>
+
+  <footer class="dica">
+    <p>Atalhos: <kbd>0-9</kbd> números &nbsp;·&nbsp; <kbd>Enter</kbd> confirma &nbsp;·&nbsp; <kbd>Backspace</kbd> corrige &nbsp;·&nbsp; <kbd>B</kbd> branco</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

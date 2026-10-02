@@ -1,0 +1,263 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --urna-bg: #d9d6cf;
+  --urna-borda: #b9b5ab;
+  --tela-bg: #eef0ea;
+  --tela-borda: #2b2b2b;
+  --tecla-bg: #2a2a2a;
+  --verde: #1fa24a;
+  --laranja: #f08a1c;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+  background: radial-gradient(circle at 50% 0%, #3a4a5e 0%, #1b2430 70%);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px;
+  gap: 18px;
+}
+
+.topo { text-align: center; max-width: 760px; }
+.topo h1 { font-size: 1.6rem; letter-spacing: .5px; }
+.topo p { margin-top: 6px; opacity: .8; font-size: .95rem; }
+
+/* ===================== URNA ===================== */
+.urna {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr;
+  gap: 18px;
+  width: min(980px, 100%);
+  background: linear-gradient(160deg, #e6e3dc, var(--urna-bg));
+  border: 3px solid var(--urna-borda);
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 30px 60px rgba(0,0,0,.55), inset 0 2px 0 rgba(255,255,255,.6);
+  color: #222;
+}
+
+/* ===================== TELA ===================== */
+.tela {
+  position: relative;
+  background: var(--tela-bg);
+  border: 6px solid var(--tela-borda);
+  border-radius: 10px;
+  min-height: 460px;
+  box-shadow: inset 0 0 25px rgba(0,0,0,.25);
+  overflow: hidden;
+}
+
+.votacao {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 448px;
+  padding: 14px 18px 0;
+}
+
+.tela-topo { min-height: 26px; }
+.seu-voto {
+  font-size: .95rem;
+  letter-spacing: 1px;
+  visibility: hidden;
+}
+.seu-voto.visivel { visibility: visible; }
+
+.tela-corpo {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  flex: 1;
+}
+
+.dados { flex: 1; display: flex; flex-direction: column; gap: 12px; }
+
+.cargo {
+  font-size: 1.9rem;
+  font-weight: 700;
+  margin: 4px 0 6px;
+}
+
+.linha { display: flex; align-items: center; gap: 12px; }
+.rotulo { font-size: .95rem; }
+
+.caixas { display: flex; gap: 6px; }
+.caixa {
+  width: 44px;
+  height: 54px;
+  border: 2px solid #222;
+  background: #fff;
+  font-size: 2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* cursor piscando na próxima caixa */
+.caixa.ativa::after {
+  content: "";
+  width: 2px;
+  height: 60%;
+  background: #222;
+  animation: pisca 1s steps(1) infinite;
+}
+@keyframes pisca { 50% { opacity: 0; } }
+
+.info { display: none; flex-direction: column; gap: 6px; margin-top: 6px; font-size: 1.05rem; }
+.info.visivel { display: flex; animation: entra .35s ease; }
+.info span:last-child { font-weight: 700; }
+.vice-linha { margin-top: 4px; }
+
+.aviso { margin-top: 10px; font-weight: 700; }
+.aviso .grande { font-size: 1.5rem; }
+.aviso .pisca { animation: piscaTexto 1s steps(1) infinite; }
+@keyframes piscaTexto { 50% { opacity: .25; } }
+
+.aviso.branco {
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 30px;
+}
+
+/* Fotos */
+.fotos {
+  width: 170px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.fotos.visivel { display: flex; animation: entra .45s ease; }
+
+.foto { text-align: center; font-size: .78rem; }
+.foto img {
+  display: block;
+  object-fit: cover;
+  border: 2px solid #222;
+  background: #ccc;
+}
+.foto.principal img { width: 150px; height: 180px; object-position: center 25%; }
+.foto.vice img { width: 100px; height: 120px; object-position: center 20%; }
+.foto figcaption { margin-top: 3px; border-top: 1px solid #222; padding-top: 2px; }
+
+@keyframes entra {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.tela-rodape {
+  font-size: .8rem;
+  padding: 6px 0 12px;
+  line-height: 1.35;
+  visibility: hidden;
+}
+.tela-rodape.visivel { visibility: visible; }
+.tela-rodape hr { border: 0; border-top: 2px solid #222; margin-bottom: 6px; }
+
+/* ===================== FIM ===================== */
+.fim {
+  display: none;
+  position: absolute;
+  inset: 0;
+  background: var(--tela-bg);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.fim.visivel { display: flex; }
+.fim-texto { font-size: 8rem; font-weight: 800; letter-spacing: 6px; animation: zoom .5s ease; }
+.fim-sub { align-self: flex-end; margin: 0 30px 0 0; font-size: 1.1rem; letter-spacing: 3px; }
+@keyframes zoom { from { transform: scale(.6); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* ===================== TECLADO ===================== */
+.teclado {
+  background: #cfccc4;
+  border: 2px solid var(--urna-borda);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.marca {
+  background: #2b3a55;
+  color: #fff;
+  border-radius: 8px;
+  text-align: center;
+  padding: 8px;
+  line-height: 1.1;
+}
+.marca span { font-size: .7rem; letter-spacing: 3px; display: block; }
+.marca strong { font-size: 1.05rem; letter-spacing: 2px; }
+
+.teclas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.tecla {
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 700;
+  border-radius: 6px;
+  color: #fff;
+  box-shadow: 0 4px 0 rgba(0,0,0,.45), 0 6px 10px rgba(0,0,0,.25);
+  transition: transform .06s, box-shadow .06s, filter .15s;
+  user-select: none;
+}
+.tecla:hover { filter: brightness(1.12); }
+.tecla:active, .tecla.press {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 rgba(0,0,0,.45);
+}
+
+.tecla.num {
+  background: var(--tecla-bg);
+  font-size: 1.5rem;
+  height: 52px;
+}
+
+.acoes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "branco corrige"
+    "confirma confirma";
+  gap: 10px;
+}
+.tecla.branco  { grid-area: branco;  background: #f4f4f4; color: #222; height: 44px; font-size: .78rem; }
+.tecla.corrige { grid-area: corrige; background: var(--laranja); height: 44px; font-size: .78rem; }
+.tecla.confirma { grid-area: confirma; background: var(--verde); height: 62px; font-size: .95rem; }
+
+.contador {
+  margin-top: auto;
+  text-align: center;
+  font-size: .8rem;
+  color: #444;
+}
+
+.dica { font-size: .8rem; opacity: .75; text-align: center; }
+kbd {
+  background: rgba(255,255,255,.15);
+  border-radius: 4px;
+  padding: 1px 6px;
+  font-family: inherit;
+}
+
+/* ===================== RESPONSIVO ===================== */
+@media (max-width: 760px) {
+  .urna { grid-template-columns: 1fr; padding: 14px; }
+  .tela { min-height: 420px; }
+  .fotos { width: 120px; }
+  .foto.principal img { width: 110px; height: 135px; }
+  .foto.vice img { width: 74px; height: 90px; }
+  .cargo { font-size: 1.5rem; }
+  .fim-texto { font-size: 5.5rem; }
+}
